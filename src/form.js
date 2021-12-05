@@ -10,14 +10,8 @@ export const Form = props => {
 
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
-  const [typedValue, setTypedValue] = React.useState([]);
   const loading = open && options!== undefined && options.length === 0;
-
-  function sleep(delay = 0) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, delay);
-    });
-  }
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   const onChangeHandle = async value => {
     // this default api does not support searching but if you use google maps or some other use the value and post to get back you reslut and then set it using setOptions 
@@ -43,7 +37,7 @@ export const Form = props => {
   }, [open]);
 
   const {
-    values: { name, email, password, confirmPassword },
+    values: { rvnGrwth, prftMrgn, shrCng, fcfRvn, pe, priceFcf, rtrn },
     errors,
     touched,
     handleChange,
@@ -60,8 +54,9 @@ export const Form = props => {
 
   return (
     <form
-      onSubmit={() => {
-        alert("submitted");
+      onSubmit={(e) => {
+        e.preventDefault();
+        setIsSubmitted(true);
       }}
     >
       <Autocomplete
@@ -101,15 +96,75 @@ export const Form = props => {
         )}
       />
       <TextField
-        id="price"
-        name="price"
-        helperText={touched.name ? errors.name : ""}
-        error={touched.name && Boolean(errors.name)}
-        label="Price"
-        value={name}
-        onChange={change.bind(null, "name")}
+        id="rvnGrwth"
+        name="rvnGrwth"
+        helperText={touched.rvnGrwth ? errors.rvnGrwth : ""}
+        error={touched.rvnGrwth && Boolean(errors.rvnGrwth)}
+        label="Revenue Growth (%)"
+        value={rvnGrwth}
+        onChange={change.bind(null, "rvnGrwth")}
         fullWidth
 
+      />
+      <TextField
+        id="prftMrgn"
+        name="prftMrgn"
+        helperText={touched.prftMrgn ? errors.prftMrgn : ""}
+        error={touched.prftMrgn && Boolean(errors.prftMrgn)}
+        label="Profit Margin (%)"
+        value={prftMrgn}
+        onChange={change.bind(null, "prftMrgn")}
+        fullWidth
+      />
+      <TextField
+        id="shrCng"
+        name="shrCng"
+        helperText={touched.shrCng ? errors.shrCng : ""}
+        error={touched.shrCng && Boolean(errors.shrCng)}
+        label="Share Change (%)"
+        value={shrCng}
+        onChange={change.bind(null, "shrCng")}
+        fullWidth
+      />
+      <TextField
+        id="fcfRvn"
+        name="fcfRvn"
+        helperText={touched.fcfRvn ? errors.fcfRvn : ""}
+        error={touched.fcfRvn && Boolean(errors.fcfRvn)}
+        label="Free Cash Flow Revenue (%)"
+        value={fcfRvn}
+        onChange={change.bind(null, "fcfRvn")}
+        fullWidth
+      />
+      <TextField
+        id="pe"
+        name="pe"
+        helperText={touched.pe ? errors.pe : ""}
+        error={touched.pe && Boolean(errors.pe)}
+        label="P/E"
+        value={pe}
+        onChange={change.bind(null, "pe")}
+        fullWidth
+      />
+      <TextField
+        id="priceFcf"
+        name="priceFcf"
+        helperText={touched.priceFcf ? errors.priceFcf : ""}
+        error={touched.priceFcf && Boolean(errors.priceFcf)}
+        label="P/FCF"
+        value={priceFcf}
+        onChange={change.bind(null, "priceFcf")}
+        fullWidth
+      />
+       <TextField
+        id="rtrn"
+        name="rtrn"
+        helperText={touched.rtrn ? errors.rtrn : ""}
+        error={touched.rtrn && Boolean(errors.rtrn)}
+        label="Desired Annual Return"
+        value={rtrn}
+        onChange={change.bind(null, "rtrn")}
+        fullWidth
       />
       <Button
         type="submit"
@@ -120,6 +175,8 @@ export const Form = props => {
       >
         Submit
       </Button>
+      {isSubmitted && "Your Target Stock Price Is"}
+      {isSubmitted && <h1 style={{ color: 'red' }}> 22</h1>}
     </form>
   );
 };
