@@ -13,7 +13,7 @@ function App() {
         <Container>
           <Navbar.Brand href="/">Truck Stop Finance</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#stockAnalyzer">Stock Analyzer Tool</Nav.Link>
+            <Nav.Link href="#stockAnalyzer">Stock Analyzer</Nav.Link>
           </Nav>
           <Nav className="me-auto">
             <Nav.Link href="#news">News</Nav.Link>
