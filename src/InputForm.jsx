@@ -48,7 +48,7 @@ class InputForm extends Component {
           direction="column"
           alignItems="center"
           justify="center"
-          style={{ minHeight: '70vh' }}
+          style={{ minHeight: '80vh' }}
         >
           <Grid item xs={3}>
             <div className={classes.container}>
