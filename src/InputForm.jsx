@@ -2,24 +2,8 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Form } from "./form";
-import Paper from "@material-ui/core/Paper";
 import * as Yup from "yup";
-import Grid from '@material-ui/core/Grid';
-
-const styles = theme => ({
- paper: {
-   marginTop: theme.spacing.unit * 1,
-   display: "flex",
-   flexDirection: "column",
-   alignItems: "center",
-   padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 5}px ${theme
-     .spacing.unit * 5}px`
- },
- container: {
-   maxWidth: "500px",
-   justify: "center"
- }
-});
+import {Typography, Card, CardContent,Grid} from '@material-ui/core';
 
 const validationSchema = Yup.object({
   rvnGrwth: Yup.number().typeError('Revenue Growth Must Be A Number').max(100, "Revenue Growth Can't Exceed 100").required("Revenue Growth is required"),
@@ -42,31 +26,17 @@ class InputForm extends Component {
     const values = { rvnGrwth: "", prftMrgn: "", shrCng: "",  fcfRvn:"", pe:"", priceFcf:"", rtrn:"" };
     return (
       <React.Fragment>
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justify="center"
-          style={{ minHeight: '80vh' }}
-        >
-          <Grid item xs={3}>
-            <div className={classes.container}>
-              <Paper elevation={5} className={classes.paper}>
-                <h1>Stock Analyzer</h1>
+            <div>
                 <Formik
                   keepDirtyOnReinitialize 
                   render={props => <Form {...props} />}
                   initialValues={values}
                   validationSchema={validationSchema}
                 />
-              </Paper>
             </div>
-          </Grid>
-        </Grid>
       </React.Fragment>
     );
   }
 }
 
-export default withStyles(styles)(InputForm);
+export default InputForm;
