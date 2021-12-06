@@ -79,7 +79,7 @@ export const Form = props => {
                       setOpen(false);
                     }}
                     isOptionEqualToValue={(option, value) => (option["1. symbol"]) === value["1. symbol"]}
-                    getOptionLabel={(option) => option["1. symbol"]}
+                    getOptionLabel={(option) => option["1. symbol"] + " - " + option["2. name"]}
                     options={options}
                     loading={loading}
                     renderInput={(params) => (
